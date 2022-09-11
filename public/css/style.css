@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* https://www.w3schools.com/howto/howto_css_overlay.asp */
+#overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+/* https://www.w3schools.com/howto/howto_css_loader.asp */
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 14px solid deepskyblue;
+  border-radius: 50%;
+  /* border-top: 16px solid #a51c30; cs50 */
+  border-bottom: 14px solid transparent
+    /*#f3f3f3*/
+  ;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* INICIO  dark mode*/
+.dark-mode {
+  background-color: #0d1117;
+  color: white;
+}
+
+#dark-mode-button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: emoji;
+  line-height: 1;
+  font-size: 24px;
+}
+
+#dark-mode-button:focus {
+  outline: none;
+}
+
+/* FIN dark mode*/
+
+/* Volver a arriba */
+#gototop {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 15px;
+  z-index: 3;
+  border: none;
+  outline: none;
+  background-color: #00a44e;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+#gototop:hover {
+  background-color: #00803e;
+}
+
+/* Fin volver a arriba*/

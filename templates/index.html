@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Video</title>
+    <!-- Para aplicar estilos y ver el overlay -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Video downloader</h1>
+    </header>
+
+    <main>
+        <form action="#" method="post">
+            <input type="url" name="url" id="url" placeholder="Input URL">
+            <input type="submit">
+            <div>
+                <select name="quality" id="quality">
+                    <option value="">- Select quality -</option>
+                </select>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>Desarrollado por Yulitooo! :)</p>
+    </footer>
+
+    <script src="../test2.js"></script>
+
+    <script>
+        const form = document.getElementsByTagName('form')[0];
+        const url = document.getElementById('url');
+        const quality = document.getElementById('quality');
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+            const data = {}
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                // sendHttpRequest("post", "?", data, function () {
+
+                // });
+            });
+
+        });
+
+        // remove the current options from the xxx select
+        function removeOptions(selectObj) {
+            let len = selectObj.options.length;
+            // len = len - 1: primero compara para luego restar
+            while (len-- > 1) selectObj.remove(1);
+        }
+
+        // https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_forms_through_JavaScript
+        function sendHttpRequest(method, url, data, callback) {
+            const xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+            function handler() {
+                if (xhr.status == 200 && xhr.response != null) {
+                    callback(xhr.response);
+                    // console.log(xhr.getResponseHeader("Content-Type"));
+                } else {
+                    console.log("There was a problem retrieving the data: " + xhr.statusText);
+                }
+            }
+            xhr.onload = handler;
+            const urlEncodedDataPairs = [];
+
+            // Turn the data object into an array of URL-encoded key/value pairs.
+            for (const [name, value] of Object.entries(data)) {
+                urlEncodedDataPairs.push(`${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
+            }
+
+            // #00a44e cdm
+            const overlay = document.createElement("div");
+            overlay.id = "overlay";
+            const loader = document.createElement("img");
+            loader.setAttribute("src", "img/loader.svg");
+            loader.style.cssText = "position: absolute;left: 50%;top: 50%;z-index: 2;margin: -100px 0 0 -100px;";
+            overlay.appendChild(loader);
+
+            // Combine the pairs into a single string and replace all %-encoded spaces to
+            // the '+' character; matches the behavior of browser form submissions.
+            const urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+
+            xhr.open(method, url + ((/\?/).test(url) ? "&" : "?") + (new Date()).getTime());
+            xhr.onloadstart = e => { document.body.appendChild(overlay); }
+            xhr.onloadend = e => { overlay.remove(); }
+            xhr.onerror = e => { console.log("Error: " + e + " Could not load url."); }
+            if (urlEncodedData && !(urlEncodedData instanceof FormData)) xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(urlEncodedData);
+        }
+
+        // create new options
+        function createOptions(data, selectObj) {
+            let newOption;
+            const fragment = d.createDocumentFragment();
+            data.forEach(el => {
+                newOption = d.createElement('option');
+                newOption.value = el.id
+                newOption.text = el.nombre;
+                try {
+                    fragment.add(newOption);
+                } catch (error) {
+                    fragment.appendChild(newOption);
+                }
+            });
+            selectObj.appendChild(fragment);
+        }
+    </script>
+</body>
+
+</html>
