@@ -1,5 +1,18 @@
 <?php
 
+function update_url($url, $html)
+{
+    $url_parts = parse_url($url);
+
+    $part1 = $url_parts['scheme'] . '://' . $url_parts['host'];
+
+    preg_match_all("@/video.*\s+\/@", $html, $matches, PREG_SET_ORDER);
+
+    $part2 = $matches[0][0];
+
+    return str_replace(" ", "", $part1 . $part2);
+}
+
 function create_media_file($filename, $ts_segments, $url_segments)
 {
     $total_segments = count($ts_segments);
@@ -78,6 +91,7 @@ function showProgressBar($done, $total, $decimals = 2, $bar_size = 100)
         echo "\n";
     }
 }
+
 function get_int($message)
 {
     while (true) {
@@ -93,6 +107,7 @@ function get_int($message)
         }
     }
 }
+
 function get_float($message)
 {
     while (true) {
@@ -108,6 +123,7 @@ function get_float($message)
         }
     }
 }
+
 function get_char($message)
 {
     while (true) {
