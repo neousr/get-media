@@ -22,7 +22,7 @@ $html = getFileContent($url);
  * Ambiguous URL
  */
 // if (str_contains($html, "Sorry, this URL is outdated")) {
-if (str_contains($html, "Sorry, this URL is outdated")) {
+if (strpos($html, "Sorry, this URL is outdated") !== false) {
 
     $url = update_url($url, $html);
 
