@@ -21,17 +21,10 @@ $html = getFileContent($url);
 /**
  * Ambiguous URL
  */
+// if (str_contains($html, "Sorry, this URL is outdated")) {
 if (str_contains($html, "Sorry, this URL is outdated")) {
 
-    $url_parts = parse_url($url);
-
-    $part1 = $url_parts['scheme'] . '://' . $url_parts['host'];
-
-    preg_match_all("@/video.*\s+\/@", $html, $matches, PREG_SET_ORDER);
-
-    $part2 = $matches[0][0];
-
-    $url = str_replace(" ", "", $part1 . $part2);
+    $url = update_url($url, $html);
 
     echo "URL has been updated: " . $url . "\n";
 
