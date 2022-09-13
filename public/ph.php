@@ -46,7 +46,7 @@ $URL = $url_segments[0] . $m3u8_segments[$idx] . $url_segments[1];
 
 $response = getFileContent($URL);
 
-$ts_segments = get_ts_segments($response, '/seg.*\.ts/');
+$ts_segments = get_ts_segments($response, '/seg.*ts/');
 
 // foreach ($ts_segments as $key => $ts_segment) {
 //     echo $url_segments[0] . $ts_segment[0] . $url_segments[1] . "\n";
