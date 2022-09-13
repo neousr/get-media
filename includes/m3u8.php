@@ -13,7 +13,7 @@ function get_ts_segments($response, $pattern = '/hls.*ts/')
 
 // https://www.php.net/manual/es/book.pcre.php
 // https://www.php.net/manual/es/reference.pcre.pattern.syntax.php
-function get_m3u8_url($html, $pattern = '/(https:.*m3u8.*\')/i')
+function get_m3u8_url($html, $pattern = '/https.*m3u8.*\'/i')
 {
     preg_match_all(
         $pattern,
