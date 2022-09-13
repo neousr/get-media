@@ -23,12 +23,16 @@ $url_segments = explode("master.m3u8", $m3u8_url);
 
 $response = getFileContent($m3u8_url);
 
-$m3u8_segments = get_m3u8_segments($response, '/index.*\.m3u8/'/* /x[0-9]+/ */);
+$m3u8_segments = get_m3u8_segments($response, '/index.*m3u8/');
+
+preg_match_all("/\d+x\d{3,4}/", $response, $matches);
+
+$resolutions = $matches[0];
 
 $n = 0;
 
-foreach ($m3u8_segments as $key => $m3u8_segment) {
-    echo $key . '. ' . $m3u8_segment . "\n";
+foreach ($resolutions as $key => $resolution) {
+    echo $key . '. ' . $resolution . "\n";
     $n++;
 }
 
