@@ -16,7 +16,7 @@ do {
 
 $html = getFileContent($url);
 
-$m3u8_url = get_m3u8_url($html, '/(https:.*m3u8)/i');
+$m3u8_url = get_m3u8_url($html, '/https.*m3u8/i');
 
 $url_segments = explode("_TPL_.h264.mp4.m3u8", $m3u8_url);
 
