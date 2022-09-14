@@ -33,3 +33,7 @@ Ejemplo de una cadena
 expandida en varias líneas
 empleando la sintaxis heredoc.
 EOD;
+
+sudo apt install php7.4-cli
+sudo apt install php7.4-curl
+sudo apt install php7.4-bcmath
