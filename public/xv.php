@@ -49,7 +49,7 @@ foreach ($resolutions as $key => $resolution) {
 }
 
 do {
-    $idx = get_int("SELECT VIDEO RESOLUTION: ");
+    $idx = get_int("CHOOSE A RESOLUTION: ");
 } while (0 > $idx || $idx >= $n);
 
 $URL = $url_segments[0] . $m3u8_segments[$idx] . $url_segments[1];
